@@ -12,12 +12,14 @@ public class UIGeneralManager : MonoBehaviour
     private InterfaceGroup wasActive;
     public InterfaceGroup progressPanel;
     public ConfirmationPopup popUp;
+    public Button bookCourseBtn;
+    public Button studyCourseBtn;
+    private bool isErrorShowing = false;
 
     private void Start()
     {
-        ServiceLocator.Instance.GetService<TimeManager>().D_timeout += MoveToFeedbackScreen;
         UpdateButtonUsability();
-
+        UpdateCourseUI();
     }
     public void MoveToFeedbackScreen()
     {
@@ -103,6 +105,10 @@ public class UIGeneralManager : MonoBehaviour
 
     public void UpdatePopUp(string message)
     {
+        if (isErrorShowing)
+        {
+            return;
+        }
         popUp.SetConfirmationText(message);
     }
 
@@ -131,4 +137,30 @@ public class UIGeneralManager : MonoBehaviour
         }
     }
 
+    public void UpdateErrorStatus(bool status)
+    {
+        isErrorShowing = status;
+    }
+
+    public void UpdateCourseUI()
+    {
+        // Get the player skills manager
+        PlayerSkillsManager psm = ServiceLocator.Instance.GetService<PlayerSkillsManager>();
+
+        // Get whether or not a course is booked
+        bool courseBooked = psm.isCourseBooked();
+
+        // Manage UI interactibility based on booking status
+        if(courseBooked)
+        {
+            bookCourseBtn.gameObject.SetActive(false);
+            studyCourseBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            bookCourseBtn.gameObject.SetActive(true);
+            studyCourseBtn.gameObject.SetActive(false);
+        }
+        
+    }
 }

@@ -58,6 +58,15 @@ public class ResourceManager : MonoBehaviour
         moneyUI.UpdateMoneyText(_moneyAvailable.value);
     }
 
+    // Handle refund of costs
+    public void UndoCost(ActionCost cost)
+    {
+        _timeAvailable += cost.time;
+        _timeManager.AddTime(cost.time.value);
+        _moneyAvailable += cost.money;
+        moneyUI.UpdateMoneyText(_moneyAvailable.value);
+    }
+
     // Reset the status of resources
     public void ResetResources()
     {
@@ -80,6 +89,9 @@ public class ResourceManager : MonoBehaviour
         // Get general UI manager and update button usability
         UIGeneralManager uiMngr = ServiceLocator.Instance.GetService<UIGeneralManager>();
         uiMngr.UpdateButtonUsability();
+
+        // Clear applications list from job manager
+        ServiceLocator.Instance.GetService<JobManager>().ClearApplicationList();
 
         // Trigger the game over screen as soon as 
         // the player runs out of money
