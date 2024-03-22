@@ -9,12 +9,14 @@ public class UIGeneralManager : MonoBehaviour
     public InterfaceGroup feedbackScreen;
     public InterfaceGroup timerPanel;
     public InterfaceGroup gameOverScreen;
+    public InterfaceGroup gameWinScreen;
     private InterfaceGroup wasActive;
     public InterfaceGroup progressPanel;
     public ConfirmationPopup popUp;
     public Button bookCourseBtn;
     public Button studyCourseBtn;
     private bool isErrorShowing = false;
+    public GameObject hoverTipRef;
 
     private void Start()
     {
@@ -82,6 +84,17 @@ public class UIGeneralManager : MonoBehaviour
         }
 
         gameOverScreen.gameObject.SetActive(true);
+        ClosePopup();
+    }
+
+    public void MoveToGameWinScreen()
+    {
+        foreach (InterfaceGroup ig in interfaceGroups)
+        {
+            ig.gameObject.SetActive(false);
+        }
+
+        gameWinScreen.gameObject.SetActive(true);
         ClosePopup();
     }
 
@@ -162,5 +175,14 @@ public class UIGeneralManager : MonoBehaviour
             studyCourseBtn.gameObject.SetActive(false);
         }
         
+    }
+
+    public void CloseHoverTips()
+    {
+        // Iterate through timer panel buttons
+        foreach (Action action in timerPanel.GetComponentsInChildren<Action>())
+        {
+            action.HideActionCost();
+        }
     }
 }
