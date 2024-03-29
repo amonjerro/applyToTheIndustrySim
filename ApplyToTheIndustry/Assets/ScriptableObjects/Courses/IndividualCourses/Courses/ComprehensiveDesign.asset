@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c06a1a8d0b5c6b4492b62e2b4a5e763, type: 3}
+  m_Name: ComprehensiveDesign
+  m_EditorClassIdentifier: 
+  data:
+    typeFilter: 1
+    reward:
+      programming:
+        name: Programming
+        value: 0
+        skillType: 0
+      design:
+        name: Design
+        value: 15
+        skillType: 1
+      graphic_art:
+        name: Graphics and Art
+        value: 10
+        skillType: 2
+      production:
+        name: Production
+        value: 0
+        skillType: 5
+      sound_and_music:
+        name: Sound and Music
+        value: 10
+        skillType: 4
+      leadership:
+        name: Leadership
+        value: 0
+        skillType: 3
+      foreign_lang:
+        name: Foreign Lang
+        value: 0
+        skillType: 6
+    timeCost:
+      value: 60
+    certification: 1
+  courseName: Comprehensive Design
+  description: 'In this course, we offer those with a talent for creativity a comprehensive
+    look at all aspects of game asset development. We cover everything rom music
+    to ambience, from sprite sheets to 3D animations, from puzzles to open-world
+    map layouts.
+
+
+    This course is certified.'
